@@ -4,7 +4,6 @@ package entity;
 
 import javax.persistence.*;
 import java.sql.Time;
-import java.util.Date;
 
 //Student Entity
 @Entity //This will let Java know that this is an entity that we are going to map to a database table.

@@ -20,7 +20,7 @@ public class CRUD {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
 
-            System.out.println("Creating an employee object...");
+            System.out.println("Creating an Customer object...");
            Customer customer = new Customer(first, last, email,phoneNumber,age,Gender);
 
 
@@ -31,7 +31,7 @@ public class CRUD {
             //save the student object
             session.save(customer);
 
-            System.out.println("Saving the new employee...");
+            System.out.println("Saving the new customer...");
 
             //commit the transaction
             session.getTransaction().commit();
@@ -50,7 +50,7 @@ public class CRUD {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
 
-            System.out.println("Creating an employee object...");
+            System.out.println("Creating an Boarding Pass object...");
            TrainTicket ticket = new TrainTicket(date,origin,destination,ETA,departureTime,ticketPrice);
 
 
@@ -61,7 +61,7 @@ public class CRUD {
             //save the student object
             session.save(ticket);
 
-            System.out.println("Saving the new employee...");
+            System.out.println("Saving the new Boarding Pass...");
 
             //commit the transaction
             session.getTransaction().commit();
@@ -96,7 +96,7 @@ public class CRUD {
         System.out.println("Train Ticket: "+ tic);
 
     }
-    public void queryRow(String x){
+    public void queryRow(String x, String word){
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Customer.class)
                 .buildSessionFactory();
@@ -104,7 +104,7 @@ public class CRUD {
         //create a session this is for hibernate
         Session session = factory.getCurrentSession();
         session.beginTransaction();
-        List<Customer> workers= session.createQuery("from Customer s where s."+x+"='"+x+"'").getResultList();
+        List workers= session.createQuery("from Customer c where c."+x+"='"+word+"'").list();
         printC(workers);
         session.getTransaction().commit();
         factory.close();
@@ -118,7 +118,7 @@ public class CRUD {
         //create a session this is for hibernate
         Session session = factory.getCurrentSession();
         session.beginTransaction();
-        List<Customer> workers= session.createQuery("from Customer s").getResultList();
+        List workers= session.createQuery("from Customer ").list();
        int amount= printC(workers);
         session.getTransaction().commit();
         factory.close();

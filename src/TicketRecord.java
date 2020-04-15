@@ -123,7 +123,7 @@ public class TicketRecord {
                 workbook.write(out);
                 workbook2.write(out);
                 out.close();
-                System.out.println("Ticketpreedsheet.xlsx written successfully");
+                System.out.println("Ticketspreadsheet.xlsx written successfully");
             }
         }
 

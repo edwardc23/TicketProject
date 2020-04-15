@@ -8,6 +8,7 @@ public class Main {
     static Scanner in = new Scanner(System.in);
     static CRUD crud= new CRUD();
     static Customer current;
+    static TrainTicket ticket;
     public static void main(String[] args) {
         System.out.println("For New Customer type 1 and  for returning customer type 2");
         int ans= in.nextInt();
@@ -42,11 +43,22 @@ public class Main {
     }
     public static void createCustomer()
     {
+        System.out.print("First name: ");
         String fName=in.next();
+        System.out.println();
+        System.out.print("Last name: ");
         String lName=in.next();
+        System.out.println();
+        System.out.print("Email: ");
         String email=in.next();
+        System.out.println();
+        System.out.println("Phone Number");
         String phoneNumber=in.next();
+        System.out.println();
+        System.out.println("Age");
         int age =in.nextInt();
+        System.out.println();
+        System.out.println("Gender");
         String Gender = in.next();
         current=crud.createCustomer(fName,lName,email,phoneNumber,age,Gender);
 

@@ -14,10 +14,11 @@ public class TrainTicket {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //This is used with auto increment for your primary key.
     @Column(name = "Boarding_Pass_Num") //This is mapping the primary key to the id column in your database.
     private int boardingPass;
-    @Id //This will map the primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //This is used with auto increment for your primary key.
-    @Column(name = "ID") //This is mapping the primary key to the id column in your database.
-    private int id;
+
+    @ManyToOne
+    @JoinColumn(name = "ID", referencedColumnName = "ID")//This links the Customer Id to the train ticket.
+    private int id; //This is mapping the primary key to the id column in your database.
+
 
     @Column(name = "Date") //This will map the firstName field to the column named first_name in your student table.
     private String date;
@@ -51,6 +52,7 @@ public class TrainTicket {
         this.ETA = ETA;
         this.departureTime = departureTime;
         this.ticketPrice = ticketPrice;
+
     }
 
     public int getBoardingPass() {

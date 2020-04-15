@@ -10,7 +10,7 @@ import java.util.List;
 public class CRUD {
 
 
-    public void createCustomer(String first, String last, String email, String phoneNumber, int age, String Gender) {
+    public Customer createCustomer(String first, String last, String email, String phoneNumber, int age, String Gender) {
 
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Customer.class)
@@ -21,7 +21,7 @@ public class CRUD {
         session.beginTransaction();
 
             System.out.println("Creating an employee object...");
-           Customer cust = new Customer(first, last, email,phoneNumber,age,Gender);
+           Customer customer = new Customer(first, last, email,phoneNumber,age,Gender);
 
 
             //start a transaction
@@ -29,7 +29,7 @@ public class CRUD {
             System.out.println("Beginning transaction...");
 
             //save the student object
-            session.save(cust);
+            session.save(customer);
 
             System.out.println("Saving the new employee...");
 
@@ -37,6 +37,7 @@ public class CRUD {
             session.getTransaction().commit();
             System.out.println("Done!");
 
+            return customer;
 
     }
     public void createTicket(String date, String origin, String destination, Time ETA, String departureTime, double ticketPrice) {
@@ -68,7 +69,7 @@ public class CRUD {
 
 
     }
-    public void readCustomerRow(int id){
+    public Customer readCustomerRow(int id){
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Customer.class)
                 .buildSessionFactory();
@@ -77,8 +78,9 @@ public class CRUD {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
 
-        Customer cust= session.get(Customer.class,id);
-        System.out.println("Customer: "+ cust);
+        Customer customer= session.get(Customer.class,id);
+        System.out.println("Customer: "+ customer);
+        return customer;
 
     }
     public void readTicketRow(int id){
@@ -108,7 +110,23 @@ public class CRUD {
         factory.close();
 
 
-    }public void queryTicketRow(String x){
+    }public int queryRow(){
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
+                .addAnnotatedClass(Customer.class)
+                .buildSessionFactory();
+
+        //create a session this is for hibernate
+        Session session = factory.getCurrentSession();
+        session.beginTransaction();
+        List<Customer> workers= session.createQuery("from Customer s").getResultList();
+       int amount= printC(workers);
+        session.getTransaction().commit();
+        factory.close();
+        return amount;
+
+    }
+
+    public void queryTicketRow(String x){
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(TrainTicket.class)
                 .buildSessionFactory();
@@ -123,12 +141,15 @@ public class CRUD {
 
 
     }
-    public void printC(List<Customer>e)
+    public int printC(List<Customer>e)
     {
+        int x=1;
         for(Customer a:e)
         {
-            System.out.println(a);
+            System.out.println(x+". "+a);
+            x++;
         }
+        return x;
     }
     public void printT(List<TrainTicket>e)
     {

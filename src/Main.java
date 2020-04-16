@@ -8,8 +8,8 @@ public class Main {
 
     static CustomerTrainTicket current;
     public static void main(String[] args) {
-
-        createCustomerTicket();
+        System.out.println(getETA("12:00"));
+       // createCustomerTicket();
 //        System.out.println("For New Customer type 1 and for returning customer type 2");
 //        int ans= in.nextInt();
 //
@@ -82,18 +82,43 @@ public class Main {
         String dest=new Scanner(System.in).next(); // clear buffer for scanner.
         System.out.println();
 
-        System.out.print("ETA: ");
-        String ETA=new Scanner(System.in).next(); // clear buffer for scanner.
-        System.out.println();
-
         System.out.print("Departure time: ");
         String dept =new Scanner(System.in).next(); // clear buffer for scanner.
+        System.out.println();
+
+        System.out.print("ETA: ");
+        String ETA=getETA(dept); // clear buffer for scanner.
         System.out.println();
 
         System.out.print("Ticket Price: ");
         double price =getPrice(50.00,age,Gender); // clear buffer for scanner.
         current=crud.createTicket(fName,lName,email,phoneNumber,age,Gender,date,origin,dest,ETA,dept,price);
 
+    }
+    public static String getETA(String depart)
+    {
+        String hr="";
+        String newTime="";
+        if(depart.length()==4)
+        {
+            hr=String.valueOf(Integer.parseInt(String.valueOf(depart.charAt(0)))+2);
+            newTime=hr+depart.substring(1);
+        }
+        else if(depart.length()==5)
+        {hr=String.valueOf(Integer.parseInt(String.valueOf(depart.substring(0,2)))+2);
+            if(Integer.parseInt(hr)<=12){
+                newTime=hr+depart.substring(2);
+            }
+            else
+            {
+                hr=String.valueOf(Integer.parseInt(hr)-12);
+                newTime=hr+depart.substring(2);
+
+            }
+
+
+        }
+        return newTime;
     }
     public static double getPrice(double price, int age, String Gender)
     {

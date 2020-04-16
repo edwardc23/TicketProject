@@ -25,12 +25,12 @@ public class TicketRecord {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery("select * from Customer");
                 XSSFWorkbook workbook = new XSSFWorkbook();
-                XSSFSheet spreadsheet = workbook.createSheet(" Records 1");
+                XSSFSheet spreadsheet = workbook.createSheet(" Records 2");
 
                 XSSFRow row = spreadsheet.createRow(1);
                 XSSFCell cell;
                 cell = row.createCell(1);
-                cell.setCellValue("id");
+                cell.setCellValue("Customer_ID");
                 cell = row.createCell(2);
                 cell.setCellValue("firstName");
                 cell = row.createCell(3);
@@ -38,20 +38,20 @@ public class TicketRecord {
                 cell = row.createCell(4);
                 cell.setCellValue("Email");
                 cell = row.createCell(5);
-                cell.setCellValue("PhoneNumber");
+                cell.setCellValue("Phone_Number");
                 cell = row.createCell(6);
-                cell.setCellValue("age");
+                cell.setCellValue("Age");
                 cell = row.createCell(7);
-                cell.setCellValue("gender");
+                cell.setCellValue("Gender");
 
 
 
-                int i = 1;
+                int i = 2;
 
                 while (resultSet.next()) {
                     row = spreadsheet.createRow(i);
                     cell = row.createCell(1);
-                    cell.setCellValue(resultSet.getInt("id"));
+                    cell.setCellValue(resultSet.getInt("Customer_ID"));
                     cell = row.createCell(2);
                     cell.setCellValue(resultSet.getString("firstName"));
                     cell = row.createCell(3);
@@ -59,18 +59,18 @@ public class TicketRecord {
                     cell = row.createCell(4);
                     cell.setCellValue(resultSet.getString("Email"));
                     cell = row.createCell(5);
-                    cell.setCellValue(resultSet.getString("PhoneNumber"));
+                    cell.setCellValue(resultSet.getString("Phone_Number"));
                     cell = row.createCell(6);
-                    cell.setCellValue(resultSet.getString("age"));
+                    cell.setCellValue(resultSet.getString("Age"));
                     cell = row.createCell(7);
-                    cell.setCellValue(resultSet.getString("gender"));
+                    cell.setCellValue(resultSet.getString("Gender"));
 
                     i++;
                 }
 
 
 
-                Statement statement2 = connect.createStatement();
+               /* Statement statement2 = connect.createStatement();
                 ResultSet resultSet2 = statement2.executeQuery("select * from Train_Ticket");
                 XSSFWorkbook workbook2 = new XSSFWorkbook();
                 XSSFSheet spreadsheet2 = workbook.createSheet(" Records 2");
@@ -115,15 +115,15 @@ public class TicketRecord {
                     cell2.setCellValue(resultSet2.getString("TicketPrice"));
 
                 b++;
-            }
+            }*/
 
 
 
                 FileOutputStream out = new FileOutputStream(new File("Records25.xlsx"));
                 workbook.write(out);
-                workbook2.write(out);
+                //workbook2.write(out);
                 out.close();
-                System.out.println("Ticketspreadsheet.xlsx written successfully");
+                System.out.println("Records25.xlsx written successfully");
             }
         }
 

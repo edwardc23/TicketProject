@@ -1,50 +1,18 @@
-import entity.Customer;
-import entity.TrainTicket;
+import entity.CustomerTrainTicket;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import javax.print.DocFlavor;
-import java.sql.Time;
 import java.util.List;
 
 public class CRUD {
 
 
-    public Customer createCustomer(String first, String last, String email, String phoneNumber, int age, String Gender) {
+
+    public CustomerTrainTicket createTicket(String first, String last, String email, String phoneNumber, int age, String Gender,String date, String origin, String destination, String ETA, String departureTime, double ticketPrice) {
 
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Customer.class)
-                .buildSessionFactory();
-
-        //create a session this is for hibernate
-        Session session = factory.getCurrentSession();
-        session.beginTransaction();
-
-            System.out.println("Creating an Customer object...");
-           Customer customer = new Customer(first, last, email,phoneNumber,age,Gender);
-
-
-            //start a transaction
-
-            System.out.println("Beginning transaction...");
-
-            //save the student object
-            session.save(customer);
-
-            System.out.println("Saving the new customer...");
-
-            //commit the transaction
-            session.getTransaction().commit();
-            System.out.println("Done!");
-
-            return customer;
-
-    }
-    public TrainTicket createTicket(String date, String origin, String destination, String ETA, String departureTime, double ticketPrice) {
-
-        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-                .addAnnotatedClass(TrainTicket.class)
+                .addAnnotatedClass(CustomerTrainTicket.class)
                 .addAnnotatedClass(Customer.class)
                 .buildSessionFactory();
 
@@ -53,7 +21,7 @@ public class CRUD {
         session.beginTransaction();
 
             System.out.println("Creating an Boarding Pass object...");
-           TrainTicket ticket = new TrainTicket(date,origin,destination,ETA,departureTime,ticketPrice);
+           CustomerTrainTicket ticket = new CustomerTrainTicket(first, last, email,phoneNumber,age,Gender,date,origin,destination,ETA,departureTime,ticketPrice);
 
 
             //start a transaction
@@ -87,14 +55,14 @@ return ticket;
     }
     public void readTicketRow(int id){
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-                .addAnnotatedClass(TrainTicket.class)
+                .addAnnotatedClass(CustomerTrainTicket.class)
                 .buildSessionFactory();
 
         //create a session this is for hibernate
         Session session = factory.getCurrentSession();
         session.beginTransaction();
 
-        TrainTicket tic= session.get(TrainTicket.class,id);
+        CustomerTrainTicket tic= session.get(CustomerTrainTicket.class,id);
         System.out.println("Train Ticket: "+ tic);
 
     }
@@ -130,13 +98,13 @@ return ticket;
 
     public void queryTicketRow(String x){
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-                .addAnnotatedClass(TrainTicket.class)
+                .addAnnotatedClass(CustomerTrainTicket.class)
                 .buildSessionFactory();
 
         //create a session this is for hibernate
         Session session = factory.getCurrentSession();
         session.beginTransaction();
-        List<TrainTicket> workers= session.createQuery("from TrainTicket s where s."+x+"='"+x+"'").getResultList();
+        List<CustomerTrainTicket> workers= session.createQuery("from TrainTicket s where s."+x+"='"+x+"'").getResultList();
         printT(workers);
         session.getTransaction().commit();
         factory.close();
@@ -153,9 +121,9 @@ return ticket;
         }
         return x;
     }
-    public void printT(List<TrainTicket>e)
+    public void printT(List<CustomerTrainTicket>e)
     {
-        for(TrainTicket a:e)
+        for(CustomerTrainTicket a:e)
         {
             System.out.println(a);
         }

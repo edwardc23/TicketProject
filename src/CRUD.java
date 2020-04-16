@@ -84,17 +84,12 @@ return ticket;
         return customer;
 
     }
-    public void readTicketRow(int id){
-        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-                .addAnnotatedClass(TrainTicket.class)
-                .buildSessionFactory();
 
-        //create a session this is for hibernate
-        Session session = factory.getCurrentSession();
-        session.beginTransaction();
 
-        TrainTicket tic= session.get(TrainTicket.class,id);
-        System.out.println("Train Ticket: "+ tic);
+     public void readTicketRow(int id){
+         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
+                 .addAnnotatedClass(TrainTicket.class)
+                 .buildSessionFactory();
 
     }
     public void queryRow(String x, String word){
@@ -110,6 +105,7 @@ return ticket;
         session.getTransaction().commit();
         factory.close();
 
+     }
 
     }public int queryRow(){
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
@@ -132,14 +128,18 @@ return ticket;
                 .addAnnotatedClass(TrainTicket.class)
                 .buildSessionFactory();
 
-        //create a session this is for hibernate
-        Session session = factory.getCurrentSession();
-        session.beginTransaction();
-        List<TrainTicket> workers= session.createQuery("from TrainTicket s where s."+x+"='"+x+"'").getResultList();
-        printT(workers);
-        session.getTransaction().commit();
-        factory.close();
+        public void queryRow(String x){
+          SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
+                  .addAnnotatedClass(Customer.class)
+                  .buildSessionFactory();
 
+          //create a session this is for hibernate
+          Session session = factory.getCurrentSession();
+          session.beginTransaction();
+          List<Customer> workers= session.createQuery("from Customer s where s."+x+"='"+x+"'").getResultList();
+          printC(workers);
+          session.getTransaction().commit();
+          factory.close();
 
     }
     public int printC(List<Customer>e)
@@ -174,6 +174,8 @@ return ticket;
         session.getTransaction().commit();
         factory.close();
     }
+
+
 
 
 }

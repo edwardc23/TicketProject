@@ -30,7 +30,7 @@ public class TicketRecord {
                 XSSFRow row = spreadsheet.createRow(1);
                 XSSFCell cell;
                 cell = row.createCell(1);
-                cell.setCellValue("ID");
+                cell.setCellValue("id");
                 cell = row.createCell(2);
                 cell.setCellValue("firstName");
                 cell = row.createCell(3);
@@ -51,7 +51,7 @@ public class TicketRecord {
                 while (resultSet.next()) {
                     row = spreadsheet.createRow(i);
                     cell = row.createCell(1);
-                    cell.setCellValue(resultSet.getInt("ID"));
+                    cell.setCellValue(resultSet.getInt("id"));
                     cell = row.createCell(2);
                     cell.setCellValue(resultSet.getString("firstName"));
                     cell = row.createCell(3);
@@ -98,28 +98,28 @@ public class TicketRecord {
 
                 while(resultSet2.next()) {
                     row2 = spreadsheet.createRow(b);
-                    cell2.setCellValue(resultSet.getString("ID"));
+                    cell2.setCellValue(resultSet2.getString("ID"));
                     cell2 = row2.createCell(1);
-                    cell2.setCellValue(resultSet.getString("Boarding_Pass_Num"));
+                    cell2.setCellValue(resultSet2.getString("Boarding_Pass_Num"));
                     cell2 = row2.createCell(2);
-                    cell2.setCellValue(resultSet.getString("Date"));
+                    cell2.setCellValue(resultSet2.getString("Date"));
                     cell2 = row2.createCell(3);
-                    cell2.setCellValue(resultSet.getString("Origin"));
+                    cell2.setCellValue(resultSet2.getString("Origin"));
                     cell2 = row2.createCell(4);
-                    cell2.setCellValue(resultSet.getString("Destination"));
+                    cell2.setCellValue(resultSet2.getString("Destination"));
                     cell2 = row2.createCell(5);
-                    cell2.setCellValue(resultSet.getString("EstimatedTimeOfArrival"));
+                    cell2.setCellValue(resultSet2.getString("EstimatedTimeOfArrival"));
                     cell2 = row2.createCell(6);
-                    cell2.setCellValue(resultSet.getString("DepartureTime"));
+                    cell2.setCellValue(resultSet2.getString("DepartureTime"));
                     cell2 = row2.createCell(7);
-                    cell2.setCellValue(resultSet.getString("TicketPrice"));
+                    cell2.setCellValue(resultSet2.getString("TicketPrice"));
 
                 b++;
             }
 
 
 
-                FileOutputStream out = new FileOutputStream(new File("Records24.xlsx"));
+                FileOutputStream out = new FileOutputStream(new File("Records25.xlsx"));
                 workbook.write(out);
                 workbook2.write(out);
                 out.close();

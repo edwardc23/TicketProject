@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import javax.print.DocFlavor;
 import java.sql.Time;
 import java.util.List;
 
@@ -40,10 +41,10 @@ public class CRUD {
             return customer;
 
     }
-    public void createTicket(String date, String origin, String destination, Time ETA, String departureTime, double ticketPrice) {
+    public TrainTicket createTicket(String date, String origin, String destination, String ETA, String departureTime, double ticketPrice) {
 
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Customer.class)
+                .addAnnotatedClass(TrainTicket.class)
                 .buildSessionFactory();
 
         //create a session this is for hibernate
@@ -67,7 +68,7 @@ public class CRUD {
             session.getTransaction().commit();
             System.out.println("Done!");
 
-
+return ticket;
     }
     public Customer readCustomerRow(int id){
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")

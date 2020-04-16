@@ -3,7 +3,6 @@ package entity;
 
 
 import javax.persistence.*;
-import java.sql.Time;
 
 //Student Entity
 @Entity //This will let Java know that this is an entity that we are going to map to a database table.
@@ -66,12 +65,12 @@ public class TrainTicket {
         this.boardingPass = boardingPass;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public int getCustomerPFK() {
+        return customerPFK;
     }
 
-    public void setCustomer(Customer id) {
-        this.customer = customer;
+    public void setCustomerPFK(Customer id) {
+        this.customerPFK = customerPFK;
     }
 
     public String getDate() {

@@ -54,7 +54,7 @@ public class Customer {
     }
 
     public void setCustomerID(int customerID) {
-        this.customerID = customerID;
+        this.customerID = id;
     }
 
     public String getFirstName() {

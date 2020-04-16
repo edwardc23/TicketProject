@@ -24,20 +24,19 @@ public class CRUD {
            CustomerTrainTicket ticket = new CustomerTrainTicket(first, last, email,phoneNumber,age,Gender,date,origin,destination,ETA,departureTime,ticketPrice);
 
 
-            //start a transaction
+        //start a transaction
 
-            System.out.println("Beginning transaction...");
+        System.out.println("Beginning transaction...");
 
-            //save the student object
-            session.save(ticket);
+        //save the student object
+        session.save(ticket);
 
-            System.out.println("Saving the new Boarding Pass...");
+        System.out.println("Saving the new Boarding Pass...");
 
-            //commit the transaction
-            session.getTransaction().commit();
-            System.out.println("Done!");
-
-return ticket;
+        //commit the transaction
+        session.getTransaction().commit();
+        System.out.println("Done!");
+        return ticket;
     }
     public CustomerTrainTicket readCustomerRow(int id){
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
@@ -53,7 +52,9 @@ return ticket;
         return customer;
 
     }
-    public void readTicketRow(int id){
+
+
+    public void readTicketRow(int id) {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(CustomerTrainTicket.class)
                 .buildSessionFactory();
@@ -66,7 +67,8 @@ return ticket;
         System.out.println("Train Ticket: "+ tic);
 
     }
-    public void queryRow(String x, String word){
+
+    public void queryRow(String x, String word) {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(CustomerTrainTicket.class)
                 .buildSessionFactory();
@@ -80,7 +82,10 @@ return ticket;
         factory.close();
 
 
-    }public int queryRow(){
+    }
+
+
+    public int queryRow() {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(CustomerTrainTicket.class)
                 .buildSessionFactory();
@@ -96,9 +101,15 @@ return ticket;
 
     }
 
-    public void queryTicketRow(String x){
+    public void queryTicketRow(String x) {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(CustomerTrainTicket.class)
+                .buildSessionFactory();
+    }
+
+    public void queryRow(String x) {
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
+                .addAnnotatedClass(Customer.class)
                 .buildSessionFactory();
 
         //create a session this is for hibernate
@@ -108,7 +119,6 @@ return ticket;
         printT(workers);
         session.getTransaction().commit();
         factory.close();
-
 
     }
 
@@ -136,6 +146,4 @@ return ticket;
         session.getTransaction().commit();
         factory.close();
     }
-
-
 }

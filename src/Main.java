@@ -5,7 +5,7 @@ import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Main {
-    static Scanner in = new Scanner(System.in);
+    Scanner in = new Scanner(System.in);
     static CRUD crud= new CRUD();
     static Customer current;
     static TrainTicket ticket;
@@ -45,6 +45,8 @@ public class Main {
     }
     public static void createCustomer()
     {
+        Scanner in = new Scanner(System.in);
+
         System.out.print("First name: ");
         String fName=in.next();
         System.out.println();
@@ -67,28 +69,30 @@ public class Main {
     }
     public static void createTicket()
     {
+        Scanner in = new Scanner(System.in);
+
         System.out.print("Date: ");
-        String date=in.next();
+        String date=new Scanner(System.in).next(); // clear buffer for scanner.
         System.out.println();
 
         System.out.print("Origin: ");
-        String origin=in.next();
+        String origin=new Scanner(System.in).next(); // clear buffer for scanner.
         System.out.println();
 
         System.out.print("Destination: ");
-        String dest=in.next();
+        String dest=new Scanner(System.in).next(); // clear buffer for scanner.
         System.out.println();
 
         System.out.print("ETA: ");
-        String ETA=in.next();
+        String ETA=new Scanner(System.in).next(); // clear buffer for scanner.
         System.out.println();
 
         System.out.print("Departure time: ");
-        String dept =in.next();
+        String dept =new Scanner(System.in).next(); // clear buffer for scanner.
         System.out.println();
 
         System.out.print("Ticket Price: ");
-        double price = in.nextDouble();
+        double price = new Scanner(System.in).nextDouble(); // clear buffer for scanner.
         ticket=crud.createTicket(date,origin,dest,ETA,dept,price);
 
     }

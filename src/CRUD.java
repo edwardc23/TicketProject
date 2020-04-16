@@ -4,13 +4,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import java.sql.Time;
 import java.util.List;
 
 public class CRUD {
 
 
-    public void createCustomer(String first, String last, String email, String phoneNumber, int age, String Gender) {
+    public Customer createCustomer(String first, String last, String email, String phoneNumber, int age, String Gender) {
 
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Customer.class)
@@ -20,68 +19,29 @@ public class CRUD {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
 
-            System.out.println("Creating an employee object...");
-           Customer cust = new Customer(first, last, email,phoneNumber,age,Gender);
+        System.out.println("Creating an Customer object...");
+        Customer customer = new Customer(first, last, email, phoneNumber, age, Gender);
 
 
-            //start a transaction
+        //start a transaction
 
-            System.out.println("Beginning transaction...");
+        System.out.println("Beginning transaction...");
 
-            //save the student object
-            session.save(cust);
+        //save the student object
+        session.save(customer);
 
-            System.out.println("Saving the new employee...");
+        System.out.println("Saving the new customer...");
 
-            //commit the transaction
-            session.getTransaction().commit();
-            System.out.println("Done!");
+        //commit the transaction
+        session.getTransaction().commit();
+        System.out.println("Done!");
 
-
-    }
-    public void createTicket(String date, String origin, String destination, Time ETA, String departureTime, double ticketPrice) {
-
-        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Customer.class)
-                .buildSessionFactory();
-
-        //create a session this is for hibernate
-        Session session = factory.getCurrentSession();
-        session.beginTransaction();
-
-            System.out.println("Creating an employee object...");
-           TrainTicket ticket = new TrainTicket(date,origin,destination,ETA,departureTime,ticketPrice);
-
-
-            //start a transaction
-
-            System.out.println("Beginning transaction...");
-
-            //save the student object
-            session.save(ticket);
-
-            System.out.println("Saving the new employee...");
-
-            //commit the transaction
-            session.getTransaction().commit();
-            System.out.println("Done!");
-
+        return customer;
 
     }
-    public void readCustomerRow(int id){
-        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Customer.class)
-                .buildSessionFactory();
 
-        //create a session this is for hibernate
-        Session session = factory.getCurrentSession();
-        session.beginTransaction();
+    public TrainTicket createTicket(String date, String origin, String destination, String ETA, String departureTime, double ticketPrice) {
 
-        Customer cust= session.get(Customer.class,id);
-        System.out.println("Customer: "+ cust);
-
-    }
-    public void readTicketRow(int id){
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(TrainTicket.class)
                 .buildSessionFactory();
@@ -90,11 +50,26 @@ public class CRUD {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
 
-        TrainTicket tic= session.get(TrainTicket.class,id);
-        System.out.println("Train Ticket: "+ tic);
+        System.out.println("Creating an Boarding Pass object...");
+        TrainTicket ticket = new TrainTicket(date, origin, destination, ETA, departureTime, ticketPrice);
 
+
+        //start a transaction
+
+        System.out.println("Beginning transaction...");
+
+        //save the student object
+        session.save(ticket);
+
+        System.out.println("Saving the new Boarding Pass...");
+
+        //commit the transaction
+        session.getTransaction().commit();
+        System.out.println("Done!");
+        return ticket;
     }
-    public void queryRow(String x){
+
+    public Customer readCustomerRow(int id) {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Customer.class)
                 .buildSessionFactory();
@@ -102,42 +77,91 @@ public class CRUD {
         //create a session this is for hibernate
         Session session = factory.getCurrentSession();
         session.beginTransaction();
-        List<Customer> workers= session.createQuery("from Customer s where s."+x+"='"+x+"'").getResultList();
+
+        Customer customer = session.get(Customer.class, id);
+        System.out.println("Customer: " + customer);
+        return customer;
+
+    }
+
+
+    public void readTicketRow(int id) {
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
+                .addAnnotatedClass(TrainTicket.class)
+                .buildSessionFactory();
+
+    }
+
+    public void queryRow(String x, String word) {
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
+                .addAnnotatedClass(Customer.class)
+                .buildSessionFactory();
+
+        //create a session this is for hibernate
+        Session session = factory.getCurrentSession();
+        session.beginTransaction();
+        List workers = session.createQuery("from Customer c where c." + x + "='" + word + "'").list();
         printC(workers);
         session.getTransaction().commit();
         factory.close();
 
 
-    }public void queryTicketRow(String x){
+    }
+
+
+    public int queryRow() {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-                .addAnnotatedClass(TrainTicket.class)
+                .addAnnotatedClass(Customer.class)
                 .buildSessionFactory();
 
         //create a session this is for hibernate
         Session session = factory.getCurrentSession();
         session.beginTransaction();
-        List<TrainTicket> workers= session.createQuery("from TrainTicket s where s."+x+"='"+x+"'").getResultList();
-        printT(workers);
+        List workers = session.createQuery("from Customer ").list();
+        int amount = printC(workers);
+        session.getTransaction().commit();
+        factory.close();
+        return amount;
+
+    }
+
+    public void queryTicketRow(String x) {
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
+                .addAnnotatedClass(TrainTicket.class)
+                .buildSessionFactory();
+    }
+
+    public void queryRow(String x) {
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
+                .addAnnotatedClass(Customer.class)
+                .buildSessionFactory();
+
+        //create a session this is for hibernate
+        Session session = factory.getCurrentSession();
+        session.beginTransaction();
+        List<Customer> workers = session.createQuery("from Customer s where s." + x + "='" + x + "'").getResultList();
+        printC(workers);
         session.getTransaction().commit();
         factory.close();
 
+    }
 
+    public int printC(List<Customer> e) {
+        int x = 1;
+        for (Customer a : e) {
+            System.out.println(x + ". " + a);
+            x++;
+        }
+        return x;
     }
-    public void printC(List<Customer>e)
-    {
-        for(Customer a:e)
-        {
+
+    public void printT(List<TrainTicket> e) {
+        for (TrainTicket a : e) {
             System.out.println(a);
         }
     }
-    public void printT(List<TrainTicket>e)
-    {
-        for(TrainTicket a:e)
-        {
-            System.out.println(a);
-        }
-    }
-    public void deleteRow(int id){
+
+    public void deleteRow(int id) {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Customer.class)
                 .buildSessionFactory();
@@ -146,12 +170,10 @@ public class CRUD {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
 
-        Customer Emp= session.get(Customer.class,id);
-        System.out.println("Delete employee: "+ Emp.getFirstName()+" "+Emp.getLastName());
+        Customer Emp = session.get(Customer.class, id);
+        System.out.println("Delete employee: " + Emp.getFirstName() + " " + Emp.getLastName());
         session.delete(Emp);
         session.getTransaction().commit();
         factory.close();
     }
-
-
 }

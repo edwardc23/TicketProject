@@ -6,3 +6,5 @@
 *.class
 
 out/production/TicketProject/resource/hibernate.cfg.xml
+
+out/production/TicketProject/META-INF/TicketProject.kotlin_module

@@ -22,8 +22,11 @@ public class TicketRecord {
                         "TrainTicket"
                 );
 
+                //SELECT * FROM Table ORDER BY Boarding_Pass_ID DESC LIMIT 1
+                //select * from CustomerTrainTicket
+
                 Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery("select * from CustomerTrainTicket");
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM Table ORDER BY Boarding_Pass_ID DESC LIMIT 1");
                 XSSFWorkbook workbook = new XSSFWorkbook();
                 XSSFSheet spreadsheet = workbook.createSheet(" Records 1");
 

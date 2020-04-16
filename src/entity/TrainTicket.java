@@ -3,24 +3,22 @@ package entity;
 
 
 import javax.persistence.*;
+import java.sql.Time;
+import java.util.Date;
 
 //Student Entity
 @Entity //This will let Java know that this is an entity that we are going to map to a database table.
-@Table(name = "train_ticket") //This is for the actual name of the database table name we are mapping to the class.
+@Table(name = "Train_Ticket") //This is for the actual name of the database table name we are mapping to the class.
 public class TrainTicket {
     //Database Mapping
     @Id //This will map the primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) //This is used with auto increment for your primary key.
     @Column(name = "Boarding_Pass_Num") //This is mapping the primary key to the id column in your database.
     private int boardingPass;
-
-    @Column(name = "Customer_ID")
-    private int customerPFK;
-
-    @ManyToOne(targetEntity = Customer.class, fetch=FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})//This links the Customer Id to the train ticket.
-    @JoinColumn(name = "Customer_ID", referencedColumnName = "Customer_ID")
-    private Customer customer; //This is mapping the primary key to the id column in your database.
-
+    @Id //This will map the primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //This is used with auto increment for your primary key.
+    @Column(name = "ID") //This is mapping the primary key to the id column in your database.
+    private int id;
 
     @Column(name = "Date") //This will map the firstName field to the column named first_name in your student table.
     private String date;
@@ -32,7 +30,7 @@ public class TrainTicket {
     private String destination;
 
     @Column(name = "EstimatedTimeOfArrival") //This will map the email field to the column named email in your student table.
-    private String ETA;
+    private Time ETA;
 
     @Column(name = "DepartureTime") //This will map the email field to the column named email in your student table.
     private  String departureTime;
@@ -47,14 +45,13 @@ public class TrainTicket {
 
     }
 
-    public TrainTicket(String date, String origin, String destination, String ETA, String departureTime, double ticketPrice) {
+    public TrainTicket(String date, String origin, String destination, Time ETA, String departureTime, double ticketPrice) {
         this.date = date;
         this.origin = origin;
         this.destination = destination;
         this.ETA = ETA;
         this.departureTime = departureTime;
         this.ticketPrice = ticketPrice;
-
     }
 
     public int getBoardingPass() {
@@ -65,12 +62,12 @@ public class TrainTicket {
         this.boardingPass = boardingPass;
     }
 
-    public int getCustomerPFK() {
-        return customerPFK;
+    public int getId() {
+        return id;
     }
 
-    public void setCustomerPFK(Customer id) {
-        this.customerPFK = customerPFK;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDate() {
@@ -97,11 +94,11 @@ public class TrainTicket {
         this.destination = destination;
     }
 
-    public String getETA() {
+    public Time getETA() {
         return ETA;
     }
 
-    public void setETA(String ETA) {
+    public void setETA(Time ETA) {
         this.ETA = ETA;
     }
 

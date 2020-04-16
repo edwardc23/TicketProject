@@ -1,19 +1,16 @@
-import entity.Customer;
-import entity.TrainTicket;
+import entity.CustomerTrainTicket;
 
 import java.util.Scanner;
 
 public class Main {
-    Scanner in = new Scanner(System.in);
+    static Scanner in = new Scanner(System.in);
     static CRUD crud= new CRUD();
-    static Customer current;
-    static TrainTicket ticket;
-    public static void main(String[] args) {
-        createCustomer();
-        createTicket();
-        
 
-//        System.out.println("For New Customer type 1 and  for returning customer type 2");
+    static CustomerTrainTicket current;
+    public static void main(String[] args) {
+
+        createCustomerTicket();
+//        System.out.println("For New Customer type 1 and for returning customer type 2");
 //        int ans= in.nextInt();
 //
 //        while(ans!=1&&ans!=2)
@@ -24,7 +21,8 @@ public class Main {
 //
 //        if(ans==1)
 //        {
-//            createCustomer();
+//            createCustomerTicket();
+//
 //        }
 //        else if(ans==2)
 //        {
@@ -33,9 +31,9 @@ public class Main {
 //            int id=in.nextInt();
 //            while(id>limit||id<=0)
 //            {
-//                id=in.nextInt();
+//                id=in.nextInt()-1;
 //            }
-//            current=crud.readCustomerRow(id-1);
+//            current=crud.readCustomerRow(id);
 //        }
 //
 //
@@ -44,33 +42,33 @@ public class Main {
 
 
     }
-    public static void createCustomer()
+
+    public static void createCustomerTicket()
     {
-        Scanner in = new Scanner(System.in);
 
         System.out.print("First name: ");
-        String fName=in.next();
+        String fName=new Scanner(System.in).next();;
         System.out.println();
-        System.out.print("Last name: ");
-        String lName=in.next();
-        System.out.println();
-        System.out.print("Email: ");
-        String email=in.next();
-        System.out.println();
-        System.out.print("Phone Number: ");
-        String phoneNumber=in.next();
-        System.out.println();
-        System.out.print("Age: ");
-        int age =in.nextInt();
-        System.out.println();
-        System.out.print("Gender: ");
-        String Gender = in.next();
-        current=crud.createCustomer(fName,lName,email,phoneNumber,age,Gender);
 
-    }
-    public static void createTicket()
-   {
-      Scanner in = new Scanner(System.in);
+        System.out.print("Last name: ");
+        String lName=new Scanner(System.in).next();;
+        System.out.println();
+
+        System.out.print("Email: ");
+        String email=new Scanner(System.in).next();;
+        System.out.println();
+
+        System.out.print("Phone Number: ");
+        String phoneNumber=new Scanner(System.in).next();;
+        System.out.println();
+
+        System.out.print("Age: ");
+        int age =new Scanner(System.in).nextInt();;
+        System.out.println();
+
+        System.out.print("Gender: ");
+        String Gender = new Scanner(System.in).next();
+        System.out.println();
 
         System.out.print("Date: ");
         String date=new Scanner(System.in).next(); // clear buffer for scanner.
@@ -93,25 +91,30 @@ public class Main {
         System.out.println();
 
         System.out.print("Ticket Price: ");
-        double price = new Scanner(System.in).nextDouble(); // clear buffer for scanner.
-        ticket=crud.createTicket(date,origin,dest,ETA,dept,price);
+        double price =getPrice(50.00,age,Gender); // clear buffer for scanner.
+        current=crud.createTicket(fName,lName,email,phoneNumber,age,Gender,date,origin,dest,ETA,dept,price);
 
     }
-    public static void getPrice(Customer customer, TrainTicket ticket)
+    public static double getPrice(double price, int age, String Gender)
     {
-        if(customer.getAge()<=12)
+        System.out.println("Original Price: "+price);
+        if(age<=12)
         {
-            ticket.setTicketPrice(ticket.getTicketPrice()*.50);
+           price=price*.50;
+            System.out.println("Reduced Price: "+price);
         }
-        else if(customer.getAge()>=60)
+        else if(age>=60)
         {
-            ticket.setTicketPrice(ticket.getTicketPrice()*.40);
+            price=price*.40;
+            System.out.println("Reduced Price: "+price);
         }
-        if(customer.getGender().toLowerCase().equals("female".toLowerCase()))
+        if(Gender.toLowerCase().equals("female".toLowerCase()))
         {
-            ticket.setTicketPrice(ticket.getTicketPrice()*.75);
+            price=price*.75;
+            System.out.println("Reduced Price: "+price);
         }
 
+        return price;
     }
 
 }

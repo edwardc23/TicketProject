@@ -7,8 +7,12 @@
 
 out/production/TicketProject/resource/hibernate.cfg.xml
 
+<<<<<<< HEAD
 out/production/TicketProject/hibernate.cfg.xml
 
 src/CRUD.java
 
 src/Main.java
+=======
+out/production/TicketProject/META-INF/TicketProject.kotlin_module
+>>>>>>> edward

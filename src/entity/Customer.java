@@ -10,8 +10,11 @@ public class Customer {
     //Database Mapping
     @Id //This will map the primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) //This is used with auto increment for your primary key.
-    @Column(name = "ID") //This is mapping the primary key to the id column in your database.
+    //This is mapping the primary key to the id column in your database.
     private int id;
+
+    @JoinColumn(name = "Customer_ID", referencedColumnName = "id")
+    private TrainTicket ticket;
 
     @Column(name = "firstName") //This will map the firstName field to the column named first_name in your student table.
     private String firstName;

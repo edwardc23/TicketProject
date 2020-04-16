@@ -10,11 +10,8 @@ public class Customer {
     //Database Mapping
     @Id //This will map the primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) //This is used with auto increment for your primary key.
-    //This is mapping the primary key to the id column in your database.
+    @Column(name = "ID") //This is mapping the primary key to the id column in your database.
     private int id;
-
-    @Column(name = "Customer_ID")
-    private int customerID;
 
     @Column(name = "firstName") //This will map the firstName field to the column named first_name in your student table.
     private String firstName;
@@ -49,12 +46,12 @@ public class Customer {
     }
 
     //Getters and Setters
-    public int getCustomerID() {
-        return customerID;
+    public int getId() {
+        return id;
     }
 
-    public void setCustomerID(int customerID) {
-        this.customerID = id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {

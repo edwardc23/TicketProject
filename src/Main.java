@@ -8,7 +8,7 @@ public class Main {
 
     static CustomerTrainTicket current;
     public static void main(String[] args) {
-        System.out.println(getETA("12:00"));
+
        // createCustomerTicket();
 //        System.out.println("For New Customer type 1 and for returning customer type 2");
 //        int ans= in.nextInt();
@@ -99,24 +99,38 @@ public class Main {
     {
         String hr="";
         String newTime="";
-        if(depart.length()==4)
+        if(depart.length()==7)
         {
             hr=String.valueOf(Integer.parseInt(String.valueOf(depart.charAt(0)))+2);
             newTime=hr+depart.substring(1);
         }
-        else if(depart.length()==5)
-        {hr=String.valueOf(Integer.parseInt(String.valueOf(depart.substring(0,2)))+2);
-            if(Integer.parseInt(hr)<=12){
-                newTime=hr+depart.substring(2);
-            }
-            else
-            {
-                hr=String.valueOf(Integer.parseInt(hr)-12);
-                newTime=hr+depart.substring(2);
+        else if(depart.length()==8) {
+            if (!depart.substring(0, 2).equals("12")) {
+                hr = String.valueOf(Integer.parseInt(String.valueOf(depart.substring(0, 2))) + 2);
+                if (Integer.parseInt(hr) <= 12) {
+                    if (depart.substring(6).equals("am")) {
+                        newTime = hr + depart.substring(2, 5) + " pm";
+                    } else if (depart.substring(6).equals("pm")) {
+                        newTime = hr + depart.substring(2, 5) + " am";
+                    }
+
+                } else {
+                    hr = String.valueOf(Integer.parseInt(hr) - 12);
+                    if (depart.substring(6).equals("am")) {
+                        newTime = hr + depart.substring(2, 5) + " pm";
+                    } else if (depart.substring(6).equals("pm")) {
+                        newTime = hr + depart.substring(2, 5) + " am";
+
+                    }
+                }
 
             }
+            else{
+                hr = String.valueOf(Integer.parseInt(depart.substring(0, 2)) + 2);
+                hr = String.valueOf(Integer.parseInt(hr) - 12);
+                newTime = hr + depart.substring(2);
 
-
+                }
         }
         return newTime;
     }

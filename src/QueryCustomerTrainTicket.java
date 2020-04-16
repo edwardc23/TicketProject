@@ -1,4 +1,4 @@
-import entity.Customer;
+import entity.CustomerTrainTicket;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -22,14 +22,14 @@ public class QueryCustomerTrainTicket {
             session.beginTransaction();
 
             //Query Student: All Students
-            List<Customer> theCustomer = session.createQuery("from Customer").getResultList();
+            List<CustomerTrainTicket> theCustomer = session.createQuery("from CustomerTrainTicket").getResultList();
             //Display Students
 //          session.createQuery("from Customer").getResultList();
 
-            //Query Customer ID from Customer table: ='Skywalker'
-            theCustomer = session.createQuery("from Customer c where c.Customer_ID=''").getResultList();
+            //Query CustomerTrainTicket from CustomerTrainTicket table where: ='female'
+            theCustomer = session.createQuery("select Boarding_Pass_Num, lastName from CustomerTrainTicket c where c.Gender='female'").getResultList();
             //Display results
-            System.out.println("\nDisplaying all the Students with last name of Skywalker.");
+            System.out.println("\nDisplaying all the Customers that are female.");
             displayStudents(theCustomer);
 
             //Query Student: lastName='Skywalker' OR firstName='Ellie'
@@ -52,8 +52,8 @@ public class QueryCustomerTrainTicket {
         }
     }
 
-    private static void displayStudents(List<Customer> theCustomer) {
-        for(Customer tempCustomer : theCustomer) {
+    private static void displayStudents(List<CustomerTrainTicket> theCustomer) {
+        for(CustomerTrainTicket tempCustomer : theCustomer) {
             System.out.println(tempCustomer);
         }
     }

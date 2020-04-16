@@ -1,17 +1,15 @@
-import entity.Customer;
-import entity.TrainTicket;
+import entity.CustomerTrainTicket;
 
-import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Main {
     Scanner in = new Scanner(System.in);
     static CRUD crud= new CRUD();
-    static Customer current;
-    static TrainTicket ticket;
+
+    static CustomerTrainTicket current;
     public static void main(String[] args) {
-        createCustomer();
-        createTicket();
+
+        createCustomerTicket();
 //        System.out.println("For New Customer type 1 and  for returning customer type 2");
 //        int ans= in.nextInt();
 //
@@ -43,34 +41,27 @@ public class Main {
 
 
     }
-    public static void createCustomer()
+
+    public static void createCustomerTicket()
     {
-        Scanner in = new Scanner(System.in);
 
         System.out.print("First name: ");
-        String fName=in.next();
+        String fName=new Scanner(System.in).next();;
         System.out.println();
         System.out.print("Last name: ");
-        String lName=in.next();
+        String lName=new Scanner(System.in).next();;
         System.out.println();
         System.out.print("Email: ");
-        String email=in.next();
+        String email=new Scanner(System.in).next();;
         System.out.println();
         System.out.print("Phone Number: ");
-        String phoneNumber=in.next();
+        String phoneNumber=new Scanner(System.in).next();;
         System.out.println();
         System.out.print("Age: ");
-        int age =in.nextInt();
+        int age =new Scanner(System.in).nextInt();;
         System.out.println();
         System.out.print("Gender: ");
-        String Gender = in.next();
-        current=crud.createCustomer(fName,lName,email,phoneNumber,age,Gender);
-
-    }
-    public static void createTicket()
-    {
-        Scanner in = new Scanner(System.in);
-
+        String Gender = new Scanner(System.in).next();;
         System.out.print("Date: ");
         String date=new Scanner(System.in).next(); // clear buffer for scanner.
         System.out.println();
@@ -93,20 +84,20 @@ public class Main {
 
         System.out.print("Ticket Price: ");
         double price = new Scanner(System.in).nextDouble(); // clear buffer for scanner.
-        ticket=crud.createTicket(date,origin,dest,ETA,dept,price);
+        current=crud.createTicket(fName,lName,email,phoneNumber,age,Gender,date,origin,dest,ETA,dept,price);
 
     }
-    public static void getPrice(Customer customer, TrainTicket ticket)
+    public static void getPrice(CustomerTrainTicket ticket)
     {
-        if(customer.getAge()<=12)
+        if(ticket.getAge()<=12)
         {
             ticket.setTicketPrice(ticket.getTicketPrice()*.50);
         }
-        else if(customer.getAge()>=60)
+        else if(ticket.getAge()>=60)
         {
             ticket.setTicketPrice(ticket.getTicketPrice()*.40);
         }
-        if(customer.getGender().toLowerCase().equals("female".toLowerCase()))
+        if(ticket.getGender().toLowerCase().equals("female".toLowerCase()))
         {
             ticket.setTicketPrice(ticket.getTicketPrice()*.75);
         }

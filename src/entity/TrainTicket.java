@@ -15,8 +15,11 @@ public class TrainTicket {
     @Column(name = "Boarding_Pass_Num") //This is mapping the primary key to the id column in your database.
     private int boardingPass;
 
+    @Column(name = "Customer_ID")
+    private int customerPFK;
 
-    @OneToOne(mappedBy = "ticket")//This links the Customer Id to the train ticket.
+    @ManyToOne(targetEntity = Customer.class, fetch=FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})//This links the Customer Id to the train ticket.
+    @JoinColumn(name = "Customer_ID", referencedColumnName = "Customer_ID")
     private Customer customer; //This is mapping the primary key to the id column in your database.
 
 
@@ -63,12 +66,12 @@ public class TrainTicket {
         this.boardingPass = boardingPass;
     }
 
-    public Customer getId() {
-        return id;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setId(Customer id) {
-        this.id = id;
+    public void setCustomer(Customer id) {
+        this.customer = customer;
     }
 
     public String getDate() {

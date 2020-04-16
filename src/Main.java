@@ -8,7 +8,7 @@ public class Main {
 
     static CustomerTrainTicket current;
     public static void main(String[] args) {
-        System.out.println(getETA("11:00 pm"));
+
        // createCustomerTicket();
 //        System.out.println("For New Customer type 1 and for returning customer type 2");
 //        int ans= in.nextInt();

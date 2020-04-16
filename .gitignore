@@ -10,3 +10,5 @@ out/production/TicketProject/resource/hibernate.cfg.xml
 out/production/TicketProject/hibernate.cfg.xml
 
 src/CRUD.java
+
+src/Main.java

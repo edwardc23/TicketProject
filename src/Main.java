@@ -30,9 +30,9 @@ public class Main {
 //            int id=in.nextInt();
 //            while(id>limit||id<=0)
 //            {
-//                id=in.nextInt();
+//                id=in.nextInt()-1;
 //            }
-//            current=crud.readCustomerRow(id-1);
+//            current=crud.readCustomerRow(id);
 //        }
 //
 //

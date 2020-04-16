@@ -45,6 +45,7 @@ public class CRUD {
 
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(TrainTicket.class)
+                .addAnnotatedClass(Customer.class)
                 .buildSessionFactory();
 
         //create a session this is for hibernate

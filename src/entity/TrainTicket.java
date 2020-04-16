@@ -18,7 +18,7 @@ public class TrainTicket {
     private int customerPFK;
 
     @ManyToOne(targetEntity = Customer.class, fetch=FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})//This links the Customer Id to the train ticket.
-    @JoinColumn(name = "Customer_ID", referencedColumnName = "Customer_ID")
+    @JoinColumn(name = "Customer_ID", referencedColumnName = "Customer_ID",insertable = false,updatable = false)
     private Customer customer; //This is mapping the primary key to the id column in your database.
 
 

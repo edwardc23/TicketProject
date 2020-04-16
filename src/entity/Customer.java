@@ -13,7 +13,7 @@ public class Customer {
     //This is mapping the primary key to the id column in your database.
     private int id;
 
-    @Column(name = "Customer_ID")
+    @Column(name = "Customer_ID",nullable = false)
     private int customerID;
 
     @Column(name = "firstName") //This will map the firstName field to the column named first_name in your student table.

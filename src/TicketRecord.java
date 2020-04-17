@@ -27,9 +27,9 @@ public class TicketRecord {
                 //select * from CustomerTrainTicket
 
                 Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM Table ORDER BY Boarding_Pass_ID DESC LIMIT 1");
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM customertrainticket ORDER BY Boarding_Pass_Num DESC LIMIT 1");
                 XSSFWorkbook workbook = new XSSFWorkbook();
-                XSSFSheet spreadsheet = workbook.createSheet(" Records 1");
+                XSSFSheet spreadsheet = workbook.createSheet(" Records 2");
 
                 XSSFRow row = spreadsheet.createRow(1);
                 XSSFCell cell;
@@ -76,7 +76,7 @@ public class TicketRecord {
                     cell = row.createCell(4);
                     cell.setCellValue(resultSet.getString("Destination"));
                     cell = row.createCell(5);
-                    cell.setCellValue(resultSet.getString(" EstimatedTimeOfArrival"));
+                    cell.setCellValue(resultSet.getString("EstimatedTimeOfArrival"));
                     cell = row.createCell(6);
                     cell.setCellValue(resultSet.getString("DepartureTime"));
                     cell = row.createCell(7);
@@ -93,14 +93,14 @@ public class TicketRecord {
                     cell.setCellValue(resultSet.getInt("Age"));
                     cell = row.createCell(13);
                     cell.setCellValue(resultSet.getString("Gender"));
-
+                    i++;
 
                 }
 
 
 
 
-                FileOutputStream out = new FileOutputStream(new File("Records25.xlsx"));
+                FileOutputStream out = new FileOutputStream(new File("Records27.xlsx"));
                 workbook.write(out);
 
                 out.close();

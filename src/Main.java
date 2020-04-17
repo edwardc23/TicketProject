@@ -1,5 +1,6 @@
 import entity.CustomerTrainTicket;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -7,9 +8,10 @@ public class Main {
     static CRUD crud= new CRUD();
     static Record r=new Record();
     static CustomerTrainTicket current;
+    static List<CustomerTrainTicket> groupOfTickets;
     public static void main(String[] args) {
 
-       //createCustomerTicket();
+      
 
         System.out.println("For New Customer type 1 and for Returning Customer type 2");
         int ans= in.nextInt();
@@ -27,10 +29,11 @@ public class Main {
         }
         else if(ans==2)
         {
-
-
-            current=crud.queryRow();
-            r.writeBoardingPass(current);
+            System.out.println("Print all Boarding Passes");
+            System.out.println("Enter your email address: ");
+            String email=new Scanner(System.in).nextLine();
+            groupOfTickets=crud.queryRow(email);
+            r.writeBoardingPass(groupOfTickets);
         }
 
 
@@ -71,11 +74,11 @@ public class Main {
         System.out.println();
 
         System.out.print("Origin: ");
-        String origin=new Scanner(System.in).next(); // clear buffer for scanner.
+        String origin=new Scanner(System.in).nextLine(); // clear buffer for scanner.
         System.out.println();
 
         System.out.print("Destination: ");
-        String dest=new Scanner(System.in).next(); // clear buffer for scanner.
+        String dest=new Scanner(System.in).nextLine(); // clear buffer for scanner.
         System.out.println();
 
         System.out.print("Departure time: ");

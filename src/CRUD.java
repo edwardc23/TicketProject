@@ -104,7 +104,7 @@ public class CRUD {
 
 
 
-   /* public void queryRow(String x) {
+   public List<CustomerTrainTicket> queryRow(String email) {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(CustomerTrainTicket.class)
                 .buildSessionFactory();
@@ -112,12 +112,12 @@ public class CRUD {
         //create a session this is for hibernate
         Session session = factory.getCurrentSession();
         session.beginTransaction();
-        List<CustomerTrainTicket> workers= session.createQuery("from TrainTicket s where s."+x+"='"+x+"'").getResultList();
-        printT(workers);
+        List workers= session.createQuery("from CustomerTrainTicket where Email = '"+email+"'").list();
+        //printT(workers);
         session.getTransaction().commit();
         factory.close();
-
-    }*/
+        return workers;
+    }
 
     public CustomerTrainTicket printT(List<CustomerTrainTicket>e)
     {

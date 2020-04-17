@@ -5,40 +5,36 @@ import java.util.Scanner;
 public class Main {
     static Scanner in = new Scanner(System.in);
     static CRUD crud= new CRUD();
-
+    static Record r=new Record();
     static CustomerTrainTicket current;
     public static void main(String[] args) {
 
-       createCustomerTicket();
-//        System.out.println("For New Customer type 1 and for returning customer type 2");
-//        int ans= in.nextInt();
-//
-//        while(ans!=1&&ans!=2)
-//        {
-//            System.out.println("Try Again");
-//           ans=in.nextInt();
-//        }
-//
-//        if(ans==1)
-//        {
-//            createCustomerTicket();
-//
-//        }
-//        else if(ans==2)
-//        {
-//            int limit= crud.queryRow();
-//            System.out.print("Choose a number: ");
-//            int id=in.nextInt();
-//            while(id>limit||id<=0)
-//            {
-//                id=in.nextInt()-1;
-//            }
-//            current=crud.readCustomerRow(id);
-//        }
-//
-//
-//
-//        System.out.println("Did it");
+       //createCustomerTicket();
+
+        System.out.println("For New Customer type 1 and for Returning Customer type 2");
+        int ans= in.nextInt();
+
+        while(ans!=1&&ans!=2)
+        {
+            System.out.println("Try Again");
+           ans=in.nextInt();
+        }
+
+        if(ans==1)
+        {
+            createCustomerTicket();
+            r.writeBoardingPass(current);
+        }
+        else if(ans==2)
+        {
+
+
+            current=crud.queryRow();
+            r.writeBoardingPass(current);
+        }
+
+
+
 
 
     }

@@ -3,6 +3,7 @@ package entity;
 
 
 import javax.persistence.*;
+import java.text.DecimalFormat;
 
 //Student Entity
 @Entity //This will let Java know that this is an entity that we are going to map to a database table.
@@ -179,23 +180,13 @@ public class CustomerTrainTicket {
 
 //    @Override
     public String toString() {
-//        return "Student{" +
-//                "id=" + id +
-//                ", firstName='" + firstName + '\'' +
-//                ", lastName='" + lastName + '\'' +
-//                ", Email='" + email + '\'' +
-//                ", Phone Number='" + phoneNumber + '\'' +
-//                ", Age ='" + String.valueOf(age)+ '\'' +
-//                ", Gender ='" + Gender+ '\'' +
-//                '}';
-        return "Student{" +
-                "  firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", Email='" + email + '\'' +
-                ", Phone Number='" + phoneNumber + '\'' +
-                ", Age ='" + String.valueOf(age)+ '\'' +
-                ", Gender ='" + Gender+ '\'' +
-                '}';
+        DecimalFormat df2 = new DecimalFormat("0.00");
+
+        return  boardingPass +", Date: " +date +", Origin: " + origin +  ", Destination: " + destination +", Estimated time of Arrival: " + ETA + ", Departure time: " + departureTime+"\n"+
+                firstName + " " + lastName +", Email: " + email +  ", Phone Number: " + phoneNumber +", Gender: " + Gender + ", Age: " + age+"\n"+
+                "Ticket Price: $"+df2.format(ticketPrice);
+
+
     }
 }
 

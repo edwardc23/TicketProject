@@ -109,7 +109,7 @@ public class CRUD {
 
     public void queryRow(String x) {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Customer.class)
+                .addAnnotatedClass(CustomerTrainTicket.class)
                 .buildSessionFactory();
 
         //create a session this is for hibernate

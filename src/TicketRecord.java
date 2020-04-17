@@ -23,7 +23,7 @@ public class TicketRecord {
                         "hbstudent"
                 );
 
-                //SELECT * FROM Table ORDER BY Boarding_Pass_ID DESC LIMIT 1
+                //SELECT * FROM customertrainticket ORDER BY Boarding_Pass_Num DESC LIMIT 1
                 //select * from CustomerTrainTicket
 
                 Statement statement = connect.createStatement();
@@ -104,7 +104,7 @@ public class TicketRecord {
                 workbook.write(out);
 
                 out.close();
-                System.out.println("Records27.xlsx written successfully");
+                System.out.println("Records28.xlsx written successfully");
             }
         }
 

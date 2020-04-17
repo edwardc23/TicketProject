@@ -13,6 +13,8 @@ public class Main {
 
       
 
+
+
         System.out.println("For New Customer type 1 and for Returning Customer type 2");
         int ans= in.nextInt();
 

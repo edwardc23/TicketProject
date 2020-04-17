@@ -9,7 +9,7 @@ public class Main {
     static CustomerTrainTicket current;
     public static void main(String[] args) {
 
-        createCustomerTicket();
+       // createCustomerTicket();
 //        System.out.println("For New Customer type 1 and for returning customer type 2");
 //        int ans= in.nextInt();
 //
@@ -82,18 +82,57 @@ public class Main {
         String dest=new Scanner(System.in).next(); // clear buffer for scanner.
         System.out.println();
 
-        System.out.print("ETA: ");
-        String ETA=new Scanner(System.in).next(); // clear buffer for scanner.
-        System.out.println();
-
         System.out.print("Departure time: ");
         String dept =new Scanner(System.in).next(); // clear buffer for scanner.
+        System.out.println();
+
+        System.out.print("ETA: ");
+        String ETA=getETA(dept); // clear buffer for scanner.
         System.out.println();
 
         System.out.print("Ticket Price: ");
         double price =getPrice(50.00,age,Gender); // clear buffer for scanner.
         current=crud.createTicket(fName,lName,email,phoneNumber,age,Gender,date,origin,dest,ETA,dept,price);
 
+    }
+    public static String getETA(String depart)
+    {
+        String hr="";
+        String newTime="";
+        if(depart.length()==7)
+        {
+            hr=String.valueOf(Integer.parseInt(String.valueOf(depart.charAt(0)))+2);
+            newTime=hr+depart.substring(1);
+        }
+        else if(depart.length()==8) {
+            if (!depart.substring(0, 2).equals("12")) {
+                hr = String.valueOf(Integer.parseInt(String.valueOf(depart.substring(0, 2))) + 2);
+                if (Integer.parseInt(hr) <= 12) {
+                    if (depart.substring(6).equals("am")) {
+                        newTime = hr + depart.substring(2, 5) + " pm";
+                    } else if (depart.substring(6).equals("pm")) {
+                        newTime = hr + depart.substring(2, 5) + " am";
+                    }
+
+                } else {
+                    hr = String.valueOf(Integer.parseInt(hr) - 12);
+                    if (depart.substring(6).equals("am")) {
+                        newTime = hr + depart.substring(2, 5) + " pm";
+                    } else if (depart.substring(6).equals("pm")) {
+                        newTime = hr + depart.substring(2, 5) + " am";
+
+                    }
+                }
+
+            }
+            else{
+                hr = String.valueOf(Integer.parseInt(depart.substring(0, 2)) + 2);
+                hr = String.valueOf(Integer.parseInt(hr) - 12);
+                newTime = hr + depart.substring(2);
+
+                }
+        }
+        return newTime;
     }
     public static double getPrice(double price, int age, String Gender)
     {

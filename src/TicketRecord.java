@@ -19,8 +19,8 @@ public class TicketRecord {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection connect = DriverManager.getConnection(
                         "jdbc:mysql://localhost:3306/train_project",
-                        "TrainTicket",
-                        "TrainTicket"
+                        "hbstudent",
+                        "hbstudent"
                 );
 
                 //SELECT * FROM Table ORDER BY Boarding_Pass_ID DESC LIMIT 1
@@ -94,8 +94,25 @@ public class TicketRecord {
                     cell = row.createCell(13);
                     cell.setCellValue(resultSet.getString("Gender"));
 
-                    i++;
+
                 }
+                while(resultSet2.next()){
+                cell.setCellValue(resultSet2.getString("ID"));
+                cell = row.createCell(8);
+                cell.setCellValue(resultSet2.getString("Boarding_Pass_Num"));
+                cell = row.createCell(9);
+                cell.setCellValue(resultSet2.getString("Date"));
+                cell = row.createCell(10);
+                cell.setCellValue(resultSet2.getString("Origin"));
+                cell = row.createCell(11);
+                cell.setCellValue(resultSet2.getString("Destination"));
+                cell = row.createCell(12);
+                cell.setCellValue(resultSet2.getString("EstimatedTimeOfArrival"));
+                cell = row.createCell(13);
+                cell.setCellValue(resultSet2.getString("DepartureTime"));
+                cell = row.createCell(14);
+                cell.setCellValue(resultSet2.getString("TicketPrice"));
+                i++;}
 
 
 

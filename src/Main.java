@@ -41,7 +41,7 @@ public class Main {
 
     public static void createCustomerTicket()
     {
-
+//
         System.out.print("First name: ");
         String fName=new Scanner(System.in).next();;
         System.out.println();

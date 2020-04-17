@@ -4,6 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class CRUD {
 
@@ -38,7 +39,7 @@ public class CRUD {
         System.out.println("Done!");
         return ticket;
     }
-   /* public CustomerTrainTicket readCustomerRow(int id){
+    public CustomerTrainTicket readCustomerRow(int id){
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(CustomerTrainTicket.class)
                 .buildSessionFactory();
@@ -67,7 +68,7 @@ public class CRUD {
         System.out.println("Train Ticket: "+ tic);
 
     }
-
+/*
     public void queryRow(String x, String word) {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(CustomerTrainTicket.class)
@@ -85,7 +86,7 @@ public class CRUD {
     }
 
 */
-/*    public int queryRow() {
+   public CustomerTrainTicket queryRow() {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(CustomerTrainTicket.class)
                 .buildSessionFactory();
@@ -93,19 +94,15 @@ public class CRUD {
         //create a session this is for hibernate
         Session session = factory.getCurrentSession();
         session.beginTransaction();
-        List workers= session.createQuery("from Customer ").list();
-       int amount= printT(workers);
+        List workers= session.createQuery("from CustomerTrainTicket ").list();
+       CustomerTrainTicket current= printT(workers);
         session.getTransaction().commit();
         factory.close();
-        return amount;
+        return current;
 
-    }*/
-
-    public void queryTicketRow(String x) {
-        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-                .addAnnotatedClass(CustomerTrainTicket.class)
-                .buildSessionFactory();
     }
+
+
 
    /* public void queryRow(String x) {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
@@ -122,14 +119,23 @@ public class CRUD {
 
     }*/
 
-    public int printT(List<CustomerTrainTicket>e)
+    public CustomerTrainTicket printT(List<CustomerTrainTicket>e)
     {
+        Scanner in = new Scanner(System.in);
         int x=1;
         for(CustomerTrainTicket a:e)
         {
             System.out.println(x+". "+a);
+            x++;
         }
-        return x;
+        System.out.print("Choose a number: ");
+        int id=in.nextInt()-1;
+        while(id>x||id<=0)
+        {
+            id=in.nextInt()-1;
+        }
+
+        return e.get(id);
     }
     public void deleteRow(int id){
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")

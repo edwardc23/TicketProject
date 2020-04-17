@@ -9,7 +9,7 @@ public class Main {
     static CustomerTrainTicket current;
     public static void main(String[] args) {
 
-       // createCustomerTicket();
+        createCustomerTicket();
 //        System.out.println("For New Customer type 1 and for returning customer type 2");
 //        int ans= in.nextInt();
 //

@@ -38,7 +38,7 @@ public class CRUD {
         System.out.println("Done!");
         return ticket;
     }
-    public CustomerTrainTicket readCustomerRow(int id){
+   /* public CustomerTrainTicket readCustomerRow(int id){
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(CustomerTrainTicket.class)
                 .buildSessionFactory();
@@ -84,8 +84,8 @@ public class CRUD {
 
     }
 
-
-    public int queryRow() {
+*/
+/*    public int queryRow() {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
                 .addAnnotatedClass(CustomerTrainTicket.class)
                 .buildSessionFactory();
@@ -99,7 +99,7 @@ public class CRUD {
         factory.close();
         return amount;
 
-    }
+    }*/
 
     public void queryTicketRow(String x) {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
@@ -107,9 +107,9 @@ public class CRUD {
                 .buildSessionFactory();
     }
 
-    public void queryRow(String x) {
+   /* public void queryRow(String x) {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Customer.class)
+                .addAnnotatedClass(CustomerTrainTicket.class)
                 .buildSessionFactory();
 
         //create a session this is for hibernate
@@ -120,7 +120,7 @@ public class CRUD {
         session.getTransaction().commit();
         factory.close();
 
-    }
+    }*/
 
     public int printT(List<CustomerTrainTicket>e)
     {

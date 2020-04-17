@@ -29,7 +29,7 @@ public class TicketRecord {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery("SELECT * FROM customertrainticket ORDER BY Boarding_Pass_Num DESC LIMIT 1");
                 XSSFWorkbook workbook = new XSSFWorkbook();
-                XSSFSheet spreadsheet = workbook.createSheet(" Records 2");
+                XSSFSheet spreadsheet = workbook.createSheet(" Records 3");
 
                 XSSFRow row = spreadsheet.createRow(1);
                 XSSFCell cell;
@@ -100,11 +100,11 @@ public class TicketRecord {
 
 
 
-                FileOutputStream out = new FileOutputStream(new File("Records27.xlsx"));
+                FileOutputStream out = new FileOutputStream(new File("Records28.xlsx"));
                 workbook.write(out);
 
                 out.close();
-                System.out.println("Records25.xlsx written successfully");
+                System.out.println("Records27.xlsx written successfully");
             }
         }
 
